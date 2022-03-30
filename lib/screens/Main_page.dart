@@ -27,6 +27,7 @@ class _MainPageState extends State<MainPage> {
           size: const NavigationPaneSize(openWidth: 120),
           items: <NavigationPaneItem>[
             PaneItem(
+              autofocus: true,
               icon: const Icon(FluentIcons.t_v_monitor),
               title: const Text("Channels"),
             ),

@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
       child: FluentApp(
         title: 'MyApp',
         theme: ThemeData(
+          accentColor: Colors.orange,
           focusTheme: FocusThemeData(
             borderRadius: BorderRadius.circular(5),
             glowFactor: 0.3,

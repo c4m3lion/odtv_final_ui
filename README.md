@@ -19,3 +19,14 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
+## ToDos
+
+1) add list of channels
+2) categories
+3) search
+4) favorites
+5) video player
+6) fullscreen
+7) epg
