@@ -1,6 +1,6 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:flutter/material.dart';
-import 'package:odtv_final_ui/screens/channles_page.dart';
+import 'package:odtv_final_ui/screens/mainpages/channles_page.dart';
+import 'package:intl/intl.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -13,17 +13,26 @@ class _MainPageState extends State<MainPage> {
   int _currentPage = 0;
   @override
   Widget build(BuildContext context) {
-    return NavigationView(
-      content: NavigationBody(
-        index: _currentPage,
-        transitionBuilder: (child, animation) =>
-            EntrancePageTransition(child: child, animation: animation),
-        children: const <Widget>[ChannelsPage(), FilesPage(), SettingsPage()],
-      ),
-      pane: NavigationPane(
+    DateTime now = DateTime.now();
+    String formattedDate = DateFormat('kk:mm:ss \n EEE d MMM').format(now);
+    return SafeArea(
+      child: NavigationView(
+        content: NavigationBody(
+          index: _currentPage,
+          transitionBuilder: (child, animation) =>
+              EntrancePageTransition(child: child, animation: animation),
+          children: const <Widget>[
+            ChannelsPage(),
+            FilesPage(),
+            SettingsPage(),
+            //ClockPage(),
+          ],
+        ),
+        pane: NavigationPane(
           selected: _currentPage,
           onChanged: (i) => setState(() => _currentPage = i),
-          displayMode: PaneDisplayMode.auto,
+          header: Container(child: Text("ODTV")),
+          displayMode: PaneDisplayMode.compact,
           size: const NavigationPaneSize(openWidth: 120),
           items: <NavigationPaneItem>[
             PaneItem(
@@ -33,22 +42,25 @@ class _MainPageState extends State<MainPage> {
             ),
             PaneItem(
                 icon: const Icon(
-                  Icons.apps,
+                  FluentIcons.app_icon_default,
                 ),
                 title: const Text("Files")),
             PaneItem(
                 icon: const Icon(FluentIcons.settings),
                 title: const Text("Settings")),
-          ]),
+          ],
+          // footerItems: [
+          //   PaneItem(
+          //     icon: Container(
+          //       color: Colors.blue,
+          //       width: 30,
+          //     ),
+          //   ),
+          // ],
+        ),
+      ),
     );
   }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) => const Center(child: Text("Home"));
 }
 
 class FilesPage extends StatelessWidget {
@@ -63,4 +75,11 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => const Center(child: Text("Settings"));
+}
+
+class ClockPage extends StatelessWidget {
+  const ClockPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => const Center(child: Text("CLOCK"));
 }

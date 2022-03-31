@@ -1,6 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:odtv_final_ui/screens/Main_page.dart';
+import 'package:odtv_final_ui/screens/login_page.dart';
 
 void main(List<String> args) {
   runApp(MyApp());
@@ -14,9 +15,10 @@ class MyApp extends StatelessWidget {
     return Shortcuts(
       shortcuts: {
         LogicalKeySet(LogicalKeyboardKey.select): ActivateIntent(),
+        //LogicalKeySet(LogicalKeyboardKey.enter): ActivateIntent(),
       },
       child: FluentApp(
-        title: 'MyApp',
+        title: 'OdTV',
         theme: ThemeData(
           accentColor: Colors.orange,
           focusTheme: FocusThemeData(
@@ -28,9 +30,10 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        initialRoute: '/main',
+        initialRoute: '/login',
         routes: {
           '/main': (context) => MainPage(),
+          '/login': (context) => LoginPage(),
         },
       ),
     );
