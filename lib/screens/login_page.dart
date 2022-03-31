@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
               child: Text('Ok'),
               onPressed: () {
                 //Navigator.pushReplacementNamed(context, '/main');
-                btn2 = "Duyme Basildi AYE";
+                print("Duyme Basildi AYE");
                 setState(() {});
               },
             ),

@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Shortcuts(
       shortcuts: {
-        LogicalKeySet(LogicalKeyboardKey.select): ActivateIntent(),
+        //LogicalKeySet(LogicalKeyboardKey.select): ActivateIntent(),
         //LogicalKeySet(LogicalKeyboardKey.enter): ActivateIntent(),
       },
       child: FluentApp(
