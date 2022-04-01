@@ -44,12 +44,12 @@ class _MainPageState extends State<MainPage> {
           ),
           child: Row(
             children: [
-              Flexible(
+              ConstrainedBox(
+                constraints: const BoxConstraints(
+                  maxWidth: 100,
+                ),
                 child: Container(
                   color: Colors.black,
-                  constraints: const BoxConstraints(
-                    maxWidth: 100.0,
-                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -90,13 +90,17 @@ class _MainPageState extends State<MainPage> {
                   ),
                 ),
               ),
-              Expanded(
-                flex: 4,
-                child: Container(color: Colors.black.withOpacity(0.7)),
+              Flexible(
+                flex: 2,
+                child: Container(
+                  color: const Color.fromARGB(0, 0, 0, 0).withOpacity(0.67),
+                ),
               ),
-              Expanded(
+              Flexible(
                 flex: 6,
-                child: Container(color: Colors.grey.withOpacity(0.7)),
+                child: Container(
+                  color: const Color(0xff4A4A4A).withOpacity(0.67),
+                ),
               )
             ],
           ),
