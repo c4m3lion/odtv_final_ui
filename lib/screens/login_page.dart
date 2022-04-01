@@ -12,7 +12,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final userText = TextEditingController();
   final passText = TextEditingController();
-
+  final FocusNode _focusNode = FocusNode();
   bool isLoading = false;
   String statusLogin = "";
 
@@ -56,8 +56,15 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    final FocusNode _focusNode = FocusNode();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    FocusNode _focusNode = FocusNode();
+    String msg = "";
     return SafeArea(
       child: Scaffold(
         body: Center(
@@ -69,11 +76,11 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(top: 8.0),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
                     child: Text(
-                      "Login",
-                      style: TextStyle(fontSize: 30),
+                      msg,
+                      style: const TextStyle(fontSize: 30),
                     ),
                   ),
                   const SizedBox(
@@ -135,11 +142,20 @@ class _LoginPageState extends State<LoginPage> {
                                 Text(statusLogin)
                               ],
                             )
-                          : ElevatedButton(
-                              onPressed: () {
-                                isLoading ? null : validateInput(context);
+                          : RawKeyboardListener(
+                              focusNode: _focusNode,
+                              onKey: (RawKeyEvent event) {
+                                setState(() {
+                                  msg =
+                                      'KeyName: ${event.logicalKey.debugName}  KeyId: ${event.logicalKey.keyId}';
+                                });
                               },
-                              child: const Text("Continue"),
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  //isLoading ? null : validateInput(context);
+                                },
+                                child: const Text("Continue"),
+                              ),
                             ),
                     ),
                   ),
