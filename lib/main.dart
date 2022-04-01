@@ -20,8 +20,8 @@ class MyApp extends StatelessWidget {
         title: 'ODTV',
         theme: ThemeData(
           focusColor: Colors.cyan.withOpacity(0.5),
-          splashColor: Colors.green,
-          hoverColor: Colors.cyan,
+          splashColor: Colors.cyan,
+          hoverColor: Colors.cyan.withOpacity(0.8),
           dialogTheme: DialogTheme(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
