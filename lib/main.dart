@@ -19,6 +19,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'ODTV',
         theme: ThemeData(
+          focusColor: Colors.cyan.withOpacity(0.5),
+          splashColor: Colors.green,
+          hoverColor: Colors.cyan,
           dialogTheme: DialogTheme(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
