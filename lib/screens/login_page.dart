@@ -142,21 +142,11 @@ class _LoginPageState extends State<LoginPage> {
                                 Text(statusLogin)
                               ],
                             )
-                          : RawKeyboardListener(
-                              focusNode: _focusNode,
-                              onKey: (RawKeyEvent event) {
-                                print(event.logicalKey.debugName);
-                                setState(() {
-                                  msg =
-                                      'KeyName: ${event.logicalKey.debugName}  KeyId: ${event.logicalKey.keyId}';
-                                });
+                          : ElevatedButton(
+                              onPressed: () {
+                                isLoading ? null : validateInput(context);
                               },
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  isLoading ? null : validateInput(context);
-                                },
-                                child: const Text("Continue"),
-                              ),
+                              child: const Text("Continue"),
                             ),
                     ),
                   ),
