@@ -14,8 +14,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Shortcuts(
       shortcuts: {
-        LogicalKeySet(LogicalKeyboardKey.select): const ActivateIntent(),
-        LogicalKeySet(LogicalKeyboardKey.pause): const ActivateIntent(),
+        LogicalKeySet(LogicalKeyboardKey.select): const ButtonActivateIntent(),
+        LogicalKeySet(LogicalKeyboardKey.mediaPlayPause):
+            const ActivateIntent(),
         //LogicalKeySet(LogicalKeyboardKey.enter): ActivateIntent(),
       },
       child: MaterialApp(
