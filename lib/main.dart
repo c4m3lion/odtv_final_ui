@@ -15,7 +15,6 @@ class MyApp extends StatelessWidget {
     return Shortcuts(
       shortcuts: const {
         //LogicalKeySet(LogicalKeyboardKey.select): const ActivateIntent(),
-        //LogicalKeySet(LogicalKeyboardKey.enter): ActivateIntent(),
       },
       child: MaterialApp(
         title: 'ODTV',
