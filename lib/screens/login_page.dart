@@ -62,9 +62,9 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
+  String msg = "tet";
   @override
   Widget build(BuildContext context) {
-    String msg = "";
     return SafeArea(
       child: Scaffold(
         body: Center(
@@ -145,6 +145,7 @@ class _LoginPageState extends State<LoginPage> {
                           : RawKeyboardListener(
                               focusNode: _focusNode,
                               onKey: (RawKeyEvent event) {
+                                print(event.logicalKey.debugName);
                                 setState(() {
                                   msg =
                                       'KeyName: ${event.logicalKey.debugName}  KeyId: ${event.logicalKey.keyId}';
