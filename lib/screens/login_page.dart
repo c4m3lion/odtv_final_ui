@@ -76,11 +76,11 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 8.0),
                     child: Text(
-                      msg,
-                      style: const TextStyle(fontSize: 30),
+                      "Login",
+                      style: TextStyle(fontSize: 30),
                     ),
                   ),
                   const SizedBox(
