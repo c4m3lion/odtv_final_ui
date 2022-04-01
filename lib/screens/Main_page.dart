@@ -44,10 +44,12 @@ class _MainPageState extends State<MainPage> {
           ),
           child: Row(
             children: [
-              Expanded(
-                flex: 1,
+              Flexible(
                 child: Container(
                   color: Colors.black,
+                  constraints: const BoxConstraints(
+                    maxWidth: 100.0,
+                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -89,11 +91,11 @@ class _MainPageState extends State<MainPage> {
                 ),
               ),
               Expanded(
-                flex: 3,
+                flex: 4,
                 child: Container(color: Colors.black.withOpacity(0.7)),
               ),
               Expanded(
-                flex: 5,
+                flex: 6,
                 child: Container(color: Colors.grey.withOpacity(0.7)),
               )
             ],
