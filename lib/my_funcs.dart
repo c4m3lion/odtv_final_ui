@@ -28,7 +28,7 @@ class MyPrint {
           actions: [
             ElevatedButton(
               autofocus: true,
-              child: Text('Ok'),
+              child: const Text('Ok'),
               onPressed: () {
                 Navigator.pop(context);
               },

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:odtv_final_ui/screens/mainpages/channles_page.dart';
 import 'package:intl/intl.dart';
-import 'package:odtv_final_ui/screens/mainpages/setting_page.dart';
 import 'dart:async';
 
 class MainPage extends StatefulWidget {
@@ -12,12 +10,12 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  int _currentPage = 0;
+  final int _currentPage = 0;
   String formattedDate = "";
   @override
   void initState() {
     // TODO: implement initState
-    Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
+    Timer.periodic(const Duration(seconds: 1), (Timer t) => _getTime());
     super.initState();
   }
 
@@ -49,6 +47,14 @@ class _MainPageState extends State<MainPage> {
               Expanded(
                 flex: 1,
                 child: Container(color: Colors.black),
+              ),
+              Expanded(
+                flex: 3,
+                child: Container(color: Colors.black.withOpacity(0.7)),
+              ),
+              Expanded(
+                flex: 5,
+                child: Container(color: Colors.grey.withOpacity(0.7)),
               )
             ],
           ),
