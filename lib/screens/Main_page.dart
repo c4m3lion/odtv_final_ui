@@ -46,7 +46,12 @@ class _MainPageState extends State<MainPage> {
             children: [
               Expanded(
                 flex: 1,
-                child: Container(color: Colors.black),
+                child: Container(
+                  color: Colors.black,
+                  child: Column(children: [
+                    IconButton(onPressed: () => {}, icon: const FlutterLogo())
+                  ]),
+                ),
               ),
               Expanded(
                 flex: 3,
