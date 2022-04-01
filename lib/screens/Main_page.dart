@@ -54,28 +54,28 @@ class _MainPageState extends State<MainPage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(20.0),
+                        padding: const EdgeInsets.all(30.0),
                         child: InkWell(
                           onTap: () => {},
                           child: Image.asset("assets/images/channels-icon.png"),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(20.0),
+                        padding: const EdgeInsets.all(30.0),
                         child: InkWell(
                           onTap: () => {},
                           child: Image.asset("assets/images/radio-icon.png"),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(20.0),
+                        padding: const EdgeInsets.all(30.0),
                         child: InkWell(
                           onTap: () => {},
                           child: Image.asset("assets/images/app-icon.png"),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(20.0),
+                        padding: const EdgeInsets.all(30.0),
                         child: InkWell(
                           onTap: () => {},
                           child: Image.asset("assets/images/settings-icon.png"),
