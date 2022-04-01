@@ -153,7 +153,7 @@ class _LoginPageState extends State<LoginPage> {
                               },
                               child: ElevatedButton(
                                 onPressed: () {
-                                  //isLoading ? null : validateInput(context);
+                                  isLoading ? null : validateInput(context);
                                 },
                                 child: const Text("Continue"),
                               ),
