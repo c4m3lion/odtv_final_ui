@@ -1,4 +1,4 @@
-import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter/material.dart';
 import 'package:odtv_final_ui/my_network.dart';
 
 class ChannelsPage extends StatefulWidget {
@@ -18,16 +18,16 @@ class _ChannelsPageState extends State<ChannelsPage> {
           flex: 1,
           child: Container(
             height: double.infinity,
-            color: Color(0xff000000).withOpacity(0.70),
+            color: const Color(0xff000000).withOpacity(0.70),
             child: ListView.builder(
-              physics: ClampingScrollPhysics(),
+              physics: const ClampingScrollPhysics(),
               itemCount: MyNetowrk.categorys.length,
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
-              itemBuilder: (context, index) => TappableListTile(
+              itemBuilder: (context, index) => ListTile(
                 onTap: () => {},
-                leading: Icon(
-                  FluentIcons.my_movies_t_v,
+                leading: const Icon(
+                  Icons.tv,
                   size: 30,
                 ),
                 isThreeLine: true,
@@ -39,7 +39,7 @@ class _ChannelsPageState extends State<ChannelsPage> {
         Expanded(
           flex: 3,
           child: Container(
-            color: Color(0xff4A4A4A).withOpacity(0.70),
+            color: const Color(0xff4A4A4A).withOpacity(0.70),
           ),
         ),
       ],

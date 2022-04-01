@@ -1,4 +1,4 @@
-import 'package:fluent_ui/fluent_ui.dart';
+import 'package:flutter/material.dart';
 
 class MyColors {
   static Color yellow = const Color(0xffFFC914);
@@ -22,11 +22,11 @@ class MyPrint {
     showDialog(
       context: context,
       builder: (context) {
-        return ContentDialog(
+        return AlertDialog(
           title: Text(_title),
           content: Text(_content),
           actions: [
-            Button(
+            ElevatedButton(
               autofocus: true,
               child: Text('Ok'),
               onPressed: () {

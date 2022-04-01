@@ -1,5 +1,4 @@
-import 'package:fluent_ui/fluent_ui.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
 import 'package:odtv_final_ui/my_funcs.dart';
 import 'package:odtv_final_ui/my_network.dart';
 
@@ -60,29 +59,39 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     FocusNode _focusNode = FocusNode();
     return SafeArea(
-      child: ScaffoldPage(
-        content: Center(
+      child: Scaffold(
+        body: Center(
           child: SizedBox(
-            width: 300,
-            height: 260,
+            width: 600,
             child: Card(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text("Login"),
-                  const SizedBox(
-                    height: 15,
+                  const Padding(
+                    padding: EdgeInsets.only(top: 8.0),
+                    child: Text(
+                      "Login",
+                      style: TextStyle(fontSize: 30),
+                    ),
                   ),
-                  InfoLabel(
-                    label: 'User',
-                    child: TextFormBox(
+                  const SizedBox(
+                    height: 40,
+                    child: Divider(),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: TextFormField(
                       enabled: !isLoading,
-                      placeholder: 'Your User',
+                      decoration: const InputDecoration(
+                        labelText: 'Your User',
+                      ),
                       validator: (text) {
-                        if (text == null || text.isEmpty)
+                        if (text == null || text.isEmpty) {
                           return 'Provide an user';
+                        }
+                        return null;
                       },
                       controller: userText,
                       enableSuggestions: false,
@@ -92,16 +101,20 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 15,
+                    height: 40,
                   ),
-                  InfoLabel(
-                    label: 'Password',
-                    child: TextFormBox(
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: TextFormField(
                       enabled: !isLoading,
-                      placeholder: 'Your Password',
+                      decoration: const InputDecoration(
+                        labelText: 'Your Password',
+                      ),
                       validator: (text) {
-                        if (text == null || text.isEmpty)
+                        if (text == null || text.isEmpty) {
                           return 'Provide an user';
+                        }
+                        return null;
                       },
                       controller: passText,
                       obscureText: true,
@@ -111,20 +124,22 @@ class _LoginPageState extends State<LoginPage> {
                       textInputAction: TextInputAction.next,
                     ),
                   ),
-                  Expanded(
-                    child: SizedBox(
-                      child: Center(
-                        child: isLoading
-                            ? Column(
-                                children: [ProgressBar(), Text(statusLogin)],
-                              )
-                            : FilledButton(
-                                onPressed: () {
-                                  isLoading ? null : validateInput(context);
-                                },
-                                child: Text("Continue"),
-                              ),
-                      ),
+                  SizedBox(
+                    height: 100,
+                    child: Center(
+                      child: isLoading
+                          ? Column(
+                              children: [
+                                const LinearProgressIndicator(),
+                                Text(statusLogin)
+                              ],
+                            )
+                          : ElevatedButton(
+                              onPressed: () {
+                                isLoading ? null : validateInput(context);
+                              },
+                              child: const Text("Continue"),
+                            ),
                     ),
                   ),
                 ],
