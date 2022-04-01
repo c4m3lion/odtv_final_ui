@@ -92,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: TextFormField(
                       enabled: !isLoading,
                       decoration: const InputDecoration(
-                        labelText: 'Your User',
+                        labelText: 'User',
                       ),
                       validator: (text) {
                         if (text == null || text.isEmpty) {

@@ -19,6 +19,12 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'ODTV',
         theme: ThemeData(
+          dialogTheme: DialogTheme(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+              //set border radius more than 50% of height and width to make circle
+            ),
+          ),
           primaryColor: Colors.orange,
           primarySwatch: Colors.cyan,
           brightness: Brightness.dark,
