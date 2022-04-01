@@ -1,4 +1,5 @@
 import 'package:fluent_ui/fluent_ui.dart';
+import 'package:odtv_final_ui/my_network.dart';
 
 class ChannelsPage extends StatefulWidget {
   const ChannelsPage({Key? key}) : super(key: key);
@@ -10,29 +11,38 @@ class ChannelsPage extends StatefulWidget {
 class _ChannelsPageState extends State<ChannelsPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/images/background.png"),
-          fit: BoxFit.cover,
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          flex: 1,
+          child: Container(
+            height: double.infinity,
+            color: Color(0xff000000).withOpacity(0.70),
+            child: ListView.builder(
+              physics: ClampingScrollPhysics(),
+              itemCount: MyNetowrk.categorys.length,
+              shrinkWrap: true,
+              scrollDirection: Axis.vertical,
+              itemBuilder: (context, index) => TappableListTile(
+                onTap: () => {},
+                leading: Icon(
+                  FluentIcons.my_movies_t_v,
+                  size: 30,
+                ),
+                isThreeLine: true,
+                title: Text(MyNetowrk.categorys[index].name),
+              ),
+            ),
+          ),
         ),
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            flex: 1,
-            child: Container(
-              color: Color(0xff000000).withOpacity(0.70),
-            ),
+        Expanded(
+          flex: 3,
+          child: Container(
+            color: Color(0xff4A4A4A).withOpacity(0.70),
           ),
-          Expanded(
-            flex: 2,
-            child: Container(
-              color: Color(0xff4A4A4A).withOpacity(0.70),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
