@@ -23,6 +23,9 @@ class MyApp extends StatelessWidget {
           primaryColor: Colors.orange,
           primarySwatch: Colors.cyan,
           brightness: Brightness.dark,
+          inputDecorationTheme: const InputDecorationTheme(
+            border: OutlineInputBorder(),
+          ),
           cardTheme: CardTheme(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),

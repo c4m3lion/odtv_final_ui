@@ -62,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
       child: Scaffold(
         body: Center(
           child: SizedBox(
-            width: 600,
+            width: 400,
             child: Card(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -81,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Divider(),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    padding: const EdgeInsets.symmetric(horizontal: 60),
                     child: TextFormField(
                       enabled: !isLoading,
                       decoration: const InputDecoration(
@@ -101,10 +101,10 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 40,
+                    height: 20,
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    padding: const EdgeInsets.symmetric(horizontal: 60),
                     child: TextFormField(
                       enabled: !isLoading,
                       decoration: const InputDecoration(
@@ -129,6 +129,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Center(
                       child: isLoading
                           ? Column(
+                              mainAxisSize: MainAxisSize.min,
                               children: [
                                 const LinearProgressIndicator(),
                                 Text(statusLogin)
