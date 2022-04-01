@@ -48,9 +48,44 @@ class _MainPageState extends State<MainPage> {
                 flex: 1,
                 child: Container(
                   color: Colors.black,
-                  child: Column(children: [
-                    IconButton(onPressed: () => {}, icon: const FlutterLogo())
-                  ]),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: InkWell(
+                          onTap: () => {},
+                          child: Image.asset("assets/images/channels-icon.png"),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: InkWell(
+                          onTap: () => {},
+                          child: Image.asset("assets/images/radio-icon.png"),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: InkWell(
+                          onTap: () => {},
+                          child: Image.asset("assets/images/app-icon.png"),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: InkWell(
+                          onTap: () => {},
+                          child: Image.asset("assets/images/settings-icon.png"),
+                        ),
+                      ),
+                      const Expanded(child: SizedBox()),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(formattedDate),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Expanded(
