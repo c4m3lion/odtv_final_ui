@@ -22,16 +22,19 @@ class _ChannelsPageState extends State<ChannelsPage> {
             child: ListView.builder(
               physics: const ClampingScrollPhysics(),
               itemCount: MyNetowrk.categorys.length,
-              shrinkWrap: true,
               scrollDirection: Axis.vertical,
-              itemBuilder: (context, index) => ListTile(
-                onTap: () => {},
-                leading: const Icon(
-                  Icons.tv,
-                  size: 30,
+              itemBuilder: (context, index) => Card(
+                color: Colors.transparent,
+                child: ListTile(
+                  onTap: () => {print("tesing")},
+                  leading: const Icon(
+                    Icons.tv,
+                    size: 30,
+                  ),
+                  isThreeLine: true,
+                  subtitle: const Text("test"),
+                  title: Text(MyNetowrk.categorys[index].name),
                 ),
-                isThreeLine: true,
-                title: Text(MyNetowrk.categorys[index].name),
               ),
             ),
           ),

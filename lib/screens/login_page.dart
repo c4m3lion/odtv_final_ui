@@ -12,7 +12,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final userText = TextEditingController();
   final passText = TextEditingController();
-  final FocusNode _focusNode = FocusNode();
   bool isLoading = false;
   String statusLogin = "";
 
@@ -58,11 +57,9 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void dispose() {
     // TODO: implement dispose
-    final FocusNode _focusNode = FocusNode();
     super.dispose();
   }
 
-  String msg = "tet";
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -90,22 +87,22 @@ class _LoginPageState extends State<LoginPage> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 60),
                     child: TextFormField(
-                      enabled: !isLoading,
-                      decoration: const InputDecoration(
-                        labelText: 'User',
-                      ),
-                      validator: (text) {
-                        if (text == null || text.isEmpty) {
-                          return 'Provide an user';
-                        }
-                        return null;
-                      },
-                      controller: userText,
-                      enableSuggestions: false,
-                      autocorrect: false,
-                      keyboardType: TextInputType.number,
-                      textInputAction: TextInputAction.next,
-                    ),
+                        enabled: !isLoading,
+                        decoration: const InputDecoration(
+                          labelText: 'User',
+                        ),
+                        validator: (text) {
+                          if (text == null || text.isEmpty) {
+                            return 'Provide an user';
+                          }
+                          return null;
+                        },
+                        controller: userText,
+                        enableSuggestions: false,
+                        autocorrect: false,
+                        keyboardType: TextInputType.number,
+                        onEditingComplete: () =>
+                            FocusScope.of(context).nextFocus()),
                   ),
                   const SizedBox(
                     height: 20,

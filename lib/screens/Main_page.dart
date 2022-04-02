@@ -10,11 +10,13 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  final int _currentPage = 0;
+  int _currentPage = 0;
   String formattedDate = "";
 
-  int _selectedIndex = 0;
-  List<Widget> pages = {Page1(), Page2()} as List<Widget>;
+  void changePaneItem(int _id) {
+    _currentPage = _id;
+  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -22,9 +24,16 @@ class _MainPageState extends State<MainPage> {
     super.initState();
   }
 
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
   void _getTime() {
     final DateTime now = DateTime.now();
     final String formattedDateTime = _formatDateTime(now);
+
     setState(() {
       formattedDate = formattedDateTime;
     });
@@ -47,35 +56,58 @@ class _MainPageState extends State<MainPage> {
           ),
           child: Row(
             children: [
-              NavigationRail(
-                selectedIndex: _selectedIndex,
-                onDestinationSelected: (int index) {
-                  setState(() {
-                    _selectedIndex = index;
-                  });
-                },
-                labelType: NavigationRailLabelType.selected,
-                destinations: const <NavigationRailDestination>[
-                  NavigationRailDestination(
-                    icon: Icon(Icons.favorite_border),
-                    selectedIcon: Icon(Icons.favorite),
-                    label: Text('First'),
+              ConstrainedBox(
+                constraints: const BoxConstraints(
+                  maxWidth: 100,
+                ),
+                child: Container(
+                  color: Colors.black,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      ListTile(
+                        onTap: () => {},
+                        title: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child:
+                                Image.asset("assets/images/channels-icon.png")),
+                      ),
+                      MaterialButton(
+                        onPressed: () => {},
+                        child: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Image.asset("assets/images/radio-icon.png")),
+                      ),
+                      MaterialButton(
+                        onPressed: () => {},
+                        child: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Image.asset("assets/images/app-icon.png")),
+                      ),
+                      MaterialButton(
+                        onPressed: () => {},
+                        child: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child:
+                                Image.asset("assets/images/settings-icon.png")),
+                      ),
+                      const Expanded(child: SizedBox()),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          formattedDate,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.cyan,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.bookmark_border),
-                    selectedIcon: Icon(Icons.book),
-                    label: Text('Second'),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(Icons.star_border),
-                    selectedIcon: Icon(Icons.star),
-                    label: Text('Third'),
-                  ),
-                ],
+                ),
               ),
-              Expanded(
-                child: pages[_currentPage],
-              )
+              const Expanded(child: PageYesy())
             ],
           ),
         ),
@@ -84,27 +116,56 @@ class _MainPageState extends State<MainPage> {
   }
 }
 
-Widget Page1() {
-  return Row(
-    children: [
-      Flexible(
-        flex: 2,
-        child: Container(
-          color: const Color.fromARGB(0, 0, 0, 0).withOpacity(0.67),
+class PageTest extends StatelessWidget {
+  const PageTest({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Flexible(
+          flex: 2,
+          child: Container(
+            color: const Color.fromARGB(0, 0, 0, 0).withOpacity(0.67),
+          ),
         ),
-      ),
-      Flexible(
-        flex: 6,
-        child: Container(
-          color: const Color(0xff4A4A4A).withOpacity(0.67),
-        ),
-      )
-    ],
-  );
+        Flexible(
+          flex: 6,
+          child: Container(
+            color: const Color(0xff4A4A4A).withOpacity(0.67),
+          ),
+        )
+      ],
+    );
+  }
 }
 
-Widget Page2() {
-  return Container(
-    color: Colors.orange,
-  );
+class PageYesy extends StatefulWidget {
+  const PageYesy({Key? key}) : super(key: key);
+
+  @override
+  State<PageYesy> createState() => _PageYesyState();
+}
+
+class _PageYesyState extends State<PageYesy> {
+  int _selectedIndex = 0;
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: ListView.builder(
+        itemCount: 10,
+        itemBuilder: (BuildContext context, int index) {
+          return ListTile(
+            title: Text('Item $index'),
+            selected: index == _selectedIndex,
+            onTap: () {
+              setState(() {
+                _selectedIndex = index;
+              });
+            },
+          );
+        },
+      ),
+    );
+  }
 }

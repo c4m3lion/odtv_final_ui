@@ -19,6 +19,10 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'ODTV',
         theme: ThemeData(
+          navigationRailTheme: const NavigationRailThemeData(
+            backgroundColor: Colors.black,
+            useIndicator: true,
+          ),
           focusColor: Colors.cyan.withOpacity(0.5),
           splashColor: Colors.cyan,
           hoverColor: Colors.cyan.withOpacity(0.8),
@@ -40,6 +44,7 @@ class MyApp extends StatelessWidget {
               //set border radius more than 50% of height and width to make circle
             ),
           ),
+          //listTileTheme: const ListTileThemeData(),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         initialRoute: '/login',

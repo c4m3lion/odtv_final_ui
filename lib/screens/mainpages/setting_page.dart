@@ -57,6 +57,7 @@ class _SettingPageState extends State<SettingPage> {
                 size: 30,
               ),
               title: const Text('Log out'),
+              subtitle: const Text(""),
               isThreeLine: true,
             ),
           ],

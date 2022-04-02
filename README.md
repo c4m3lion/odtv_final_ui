@@ -30,3 +30,10 @@ samples, guidance on mobile development, and a full API reference.
 5) video player
 6) fullscreen
 7) epg
+
+
+## bugs
+tv remote sometimes not works
+check CallbackShortcuts to fix
+focusNode.addListener
+Focus(child:)
