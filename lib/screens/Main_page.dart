@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'dart:async';
 
+import 'package:odtv_final_ui/my_funcs.dart';
+import 'package:odtv_final_ui/screens/mainpages/channles_page.dart';
+import 'package:odtv_final_ui/screens/mainpages/setting_page.dart';
+
 class MainPage extends StatefulWidget {
-  const MainPage({Key? key}) : super(key: key);
+  MainPage({Key? key}) : super(key: key);
 
   @override
   State<MainPage> createState() => _MainPageState();
 }
 
 class _MainPageState extends State<MainPage> {
-  int _currentPage = 0;
   String formattedDate = "";
-
-  void changePaneItem(int _id) {
-    _currentPage = _id;
-  }
+  Widget currentPage = ChannelsPage();
 
   @override
   void initState() {
@@ -43,6 +44,8 @@ class _MainPageState extends State<MainPage> {
     return DateFormat('MM/dd/yyyy \n hh:mm:ss').format(dateTime);
   }
 
+  int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -56,115 +59,65 @@ class _MainPageState extends State<MainPage> {
           ),
           child: Row(
             children: [
-              ConstrainedBox(
-                constraints: const BoxConstraints(
+              Container(
+                constraints: BoxConstraints(
                   maxWidth: 100,
                 ),
-                child: Container(
-                  color: Colors.black,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      ListTile(
-                        onTap: () => {},
-                        title: Padding(
-                            padding: const EdgeInsets.all(20),
-                            child:
-                                Image.asset("assets/images/channels-icon.png")),
-                      ),
-                      MaterialButton(
-                        onPressed: () => {},
-                        child: Padding(
-                            padding: const EdgeInsets.all(20),
-                            child: Image.asset("assets/images/radio-icon.png")),
-                      ),
-                      MaterialButton(
-                        onPressed: () => {},
-                        child: Padding(
-                            padding: const EdgeInsets.all(20),
-                            child: Image.asset("assets/images/app-icon.png")),
-                      ),
-                      MaterialButton(
-                        onPressed: () => {},
-                        child: Padding(
-                            padding: const EdgeInsets.all(20),
-                            child:
-                                Image.asset("assets/images/settings-icon.png")),
-                      ),
-                      const Expanded(child: SizedBox()),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          formattedDate,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.cyan,
-                          ),
+                color: Colors.black,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 100,
+                    ),
+                    Material(
+                      type: MaterialType.transparency,
+                      child: ListTile(
+                        contentPadding: EdgeInsets.all(10),
+                        selected: 0 == _selectedIndex,
+                        onTap: () {
+                          setState(() {
+                            _selectedIndex = 0;
+                            currentPage = ChannelsPage();
+                          });
+                        },
+                        title: Image.asset(
+                          "assets/images/channels-icon.png",
+                          height: 30,
+                          color: 0 == _selectedIndex
+                              ? MyPaints.selectedColor
+                              : null,
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                    Material(
+                      type: MaterialType.transparency,
+                      child: ListTile(
+                        contentPadding: EdgeInsets.all(10),
+                        selected: 1 == _selectedIndex,
+                        onTap: () {
+                          setState(() {
+                            _selectedIndex = 1;
+                            currentPage = SettingPage();
+                          });
+                        },
+                        title: Image.asset(
+                          "assets/images/settings-icon.png",
+                          height: 30,
+                          color: 1 == _selectedIndex
+                              ? MyPaints.selectedColor
+                              : null,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              const Expanded(child: PageYesy())
+              Expanded(
+                child: currentPage,
+              ),
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class PageTest extends StatelessWidget {
-  const PageTest({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Flexible(
-          flex: 2,
-          child: Container(
-            color: const Color.fromARGB(0, 0, 0, 0).withOpacity(0.67),
-          ),
-        ),
-        Flexible(
-          flex: 6,
-          child: Container(
-            color: const Color(0xff4A4A4A).withOpacity(0.67),
-          ),
-        )
-      ],
-    );
-  }
-}
-
-class PageYesy extends StatefulWidget {
-  const PageYesy({Key? key}) : super(key: key);
-
-  @override
-  State<PageYesy> createState() => _PageYesyState();
-}
-
-class _PageYesyState extends State<PageYesy> {
-  int _selectedIndex = 0;
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (BuildContext context, int index) {
-          return ListTile(
-            title: Text('Item $index'),
-            selected: index == _selectedIndex,
-            onTap: () {
-              setState(() {
-                _selectedIndex = index;
-              });
-            },
-          );
-        },
       ),
     );
   }

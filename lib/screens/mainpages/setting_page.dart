@@ -20,45 +20,58 @@ class _SettingPageState extends State<SettingPage> {
           /// You can add a padding to the view to avoid having the scrollbar over the UI elements
           padding: const EdgeInsets.only(right: 16.0),
           children: [
-            ListTile(
-              onTap: () => {},
-              leading: const Icon(
-                Icons.verified_user,
-                size: 30,
+            Material(
+              color: Colors.transparent,
+              child: ListTile(
+                onTap: () => {},
+                leading: const Icon(
+                  Icons.verified_user,
+                  size: 30,
+                ),
+                title: const Text('User'),
+                subtitle: Text(MyNetowrk.userLogin),
+                isThreeLine: true,
               ),
-              title: const Text('User'),
-              subtitle: Text(MyNetowrk.userLogin),
-              isThreeLine: true,
             ),
-            ListTile(
-              onTap: () => {},
-              leading: const Icon(
-                Icons.app_registration,
-                size: 30,
+            Material(
+              color: Colors.transparent,
+              child: ListTile(
+                onTap: () => {},
+                leading: const Icon(
+                  Icons.app_registration,
+                  size: 30,
+                ),
+                title: const Text('Version'),
+                subtitle: const Text('v0.0.1'),
+                isThreeLine: true,
               ),
-              title: const Text('Version'),
-              subtitle: const Text('v0.0.1'),
-              isThreeLine: true,
             ),
-            ListTile(
-              onTap: () => {},
-              leading: const Icon(
-                Icons.language,
-                size: 30,
+            Material(
+              color: Colors.transparent,
+              child: ListTile(
+                onTap: () => {},
+                leading: const Icon(
+                  Icons.language,
+                  size: 30,
+                ),
+                title: const Text('Languages'),
+                subtitle: const Text('Change app language'),
+                isThreeLine: true,
               ),
-              title: const Text('Languages'),
-              subtitle: const Text('Change app language'),
-              isThreeLine: true,
             ),
-            ListTile(
-              onTap: () => {Navigator.pushReplacementNamed(context, '/login')},
-              leading: const Icon(
-                Icons.logout,
-                size: 30,
+            Material(
+              color: Colors.transparent,
+              child: ListTile(
+                onTap: () =>
+                    {Navigator.pushReplacementNamed(context, '/login')},
+                leading: const Icon(
+                  Icons.logout,
+                  size: 30,
+                ),
+                title: const Text('Log out'),
+                subtitle: const Text(""),
+                isThreeLine: true,
               ),
-              title: const Text('Log out'),
-              subtitle: const Text(""),
-              isThreeLine: true,
             ),
           ],
         ),

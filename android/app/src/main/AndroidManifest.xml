@@ -2,10 +2,11 @@
     package="com.example.odtv_final_ui">
     <uses-feature android:name="android.software.leanback" android:required="false" />
     <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:banner="@drawable/banner"
    
-        android:label="odtv_final_ui"
+        android:label="OD TV"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

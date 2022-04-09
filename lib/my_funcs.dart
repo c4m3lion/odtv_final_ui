@@ -39,3 +39,7 @@ class MyPrint {
     );
   }
 }
+
+class MyPaints {
+  static Color selectedColor = Colors.cyan;
+}

@@ -23,19 +23,23 @@ class _ChannelsPageState extends State<ChannelsPage> {
               physics: const ClampingScrollPhysics(),
               itemCount: MyNetowrk.categorys.length,
               scrollDirection: Axis.vertical,
-              itemBuilder: (context, index) => Card(
-                color: Colors.transparent,
-                child: ListTile(
-                  onTap: () => {print("tesing")},
-                  leading: const Icon(
-                    Icons.tv,
-                    size: 30,
+              itemBuilder: (context, index) {
+                return Material(
+                  color: index == MyLocalData.selectedChannelPage
+                      ? Colors.cyan.withOpacity(0.4)
+                      : Colors.transparent,
+                  child: ListTile(
+                    contentPadding: EdgeInsets.all(10),
+                    onTap: () => {
+                      setState(() {
+                        MyLocalData.selectedChannelPage = index;
+                      }),
+                    },
+                    selected: index == MyLocalData.selectedChannelPage,
+                    title: Text(MyNetowrk.categorys[index].name),
                   ),
-                  isThreeLine: true,
-                  subtitle: const Text("test"),
-                  title: Text(MyNetowrk.categorys[index].name),
-                ),
-              ),
+                );
+              },
             ),
           ),
         ),

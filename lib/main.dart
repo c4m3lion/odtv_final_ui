@@ -1,28 +1,43 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:odtv_final_ui/screens/Main_page.dart';
 import 'package:odtv_final_ui/screens/login_page.dart';
 
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+}
+
 void main(List<String> args) {
-  runApp(const MyApp());
+  HttpOverrides.global = MyHttpOverrides();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
+
+  void initData() async {}
 
   @override
   Widget build(BuildContext context) {
+    initData();
     return Shortcuts(
       shortcuts: {
-        LogicalKeySet(LogicalKeyboardKey.select): const ActivateIntent(),
+        LogicalKeySet(LogicalKeyboardKey.select): ActivateIntent(),
       },
       child: MaterialApp(
         title: 'ODTV',
         theme: ThemeData(
-          navigationRailTheme: const NavigationRailThemeData(
-            backgroundColor: Colors.black,
-            useIndicator: true,
-          ),
+          pageTransitionsTheme: PageTransitionsTheme(builders: {
+            TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.windows: CupertinoPageTransitionsBuilder(),
+          }),
           focusColor: Colors.cyan.withOpacity(0.5),
           splashColor: Colors.cyan,
           hoverColor: Colors.cyan.withOpacity(0.8),
@@ -35,7 +50,7 @@ class MyApp extends StatelessWidget {
           primaryColor: Colors.orange,
           primarySwatch: Colors.cyan,
           brightness: Brightness.dark,
-          inputDecorationTheme: const InputDecorationTheme(
+          inputDecorationTheme: InputDecorationTheme(
             border: OutlineInputBorder(),
           ),
           cardTheme: CardTheme(
@@ -44,13 +59,16 @@ class MyApp extends StatelessWidget {
               //set border radius more than 50% of height and width to make circle
             ),
           ),
-          //listTileTheme: const ListTileThemeData(),
+          listTileTheme: ListTileThemeData(
+              //selectedTileColor: Colors.cyan.withOpacity(0.8),
+              ),
+          splashFactory: InkRipple.splashFactory,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         initialRoute: '/login',
         routes: {
-          '/main': (context) => const MainPage(),
-          '/login': (context) => const LoginPage(),
+          '/main': (context) => MainPage(),
+          '/login': (context) => LoginPage(),
         },
       ),
     );

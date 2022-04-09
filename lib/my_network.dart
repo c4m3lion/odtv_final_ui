@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart';
 import 'package:odtv_final_ui/my_funcs.dart';
 
@@ -7,6 +7,8 @@ class MyNetowrk {
   ///////User Infos\\\\\\\\\\\\\\\\
   static String token = "";
   static String userLogin = "";
+  static String userPass = "";
+  //////chanels
   static Channel currentChanel = Channel();
   static List<Channel> channels = List.empty(growable: true);
   static List<Category> categorys = List.empty(growable: true);
@@ -28,6 +30,7 @@ class MyNetowrk {
         ),
       );
       userLogin = login;
+      userPass = pass;
       MyPrint.printWarning(response.body);
       Map data = jsonDecode(response.body);
       if (data.containsKey("error")) {
@@ -55,6 +58,18 @@ class MyNetowrk {
       if (data.containsKey("error")) {
         return data['error']['message'];
       } else {
+        categorys.clear();
+        channels.clear();
+        Category c1 = Category();
+        c1.id = "channel";
+        c1.position = -1;
+        c1.name = "Channels";
+        categorys.add(c1);
+        c1 = Category();
+        c1.id = "favorites";
+        c1.position = -2;
+        c1.name = "Favorites";
+        categorys.add(c1);
         for (var i in data['categories']) {
           Category c = Category();
           c.id = i['id'];
@@ -109,4 +124,23 @@ class EPG {
   String description = "";
   String startdt = "";
   String enddt = "";
+}
+
+class MyLocalData {
+  final storage = const FlutterSecureStorage();
+  static int selectedChannelPage = 0;
+
+  void initData() async {
+    MyNetowrk.userLogin = (await storage.read(key: "userLogin")) ?? "";
+    MyNetowrk.userPass = (await storage.read(key: "userPass")) ?? "";
+  }
+
+  Future<void> setData() async {
+    await storage.write(key: "userLogin", value: MyNetowrk.userLogin);
+    await storage.write(key: "userPass", value: MyNetowrk.userPass);
+  }
+
+  void deleteDatas() async {
+    await storage.deleteAll();
+  }
 }
