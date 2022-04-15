@@ -3,7 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart';
 import 'package:odtv_final_ui/my_funcs.dart';
 
-class MyNetowrk {
+class MyNetwork {
   ///////User Infos\\\\\\\\\\\\\\\\
   static String token = "";
   static String userLogin = "";
@@ -11,6 +11,7 @@ class MyNetowrk {
   //////chanels
   static Channel currentChanel = Channel();
   static List<Channel> channels = List.empty(growable: true);
+  static List<Channel> currentChannels = List.empty(growable: true);
   static List<Category> categorys = List.empty(growable: true);
 
   Future<String> login({required String login, required String pass}) async {
@@ -89,7 +90,30 @@ class MyNetowrk {
           channels.add(c);
         }
         currentChanel = channels[0];
+        currentChannels = channels;
         return "OK";
+      }
+    } catch (e) {
+      MyPrint.printError(e.toString());
+      return e.toString();
+    }
+  }
+
+  Future<String> getPlayBack({String channel_id = "none"}) async {
+    channel_id == "none" ? channel_id = currentChanel.id : null;
+    try {
+      Response response = await get(
+        Uri.parse("https://mw.odtv.az/api/v1/channel_url/$channel_id"),
+        headers: {
+          'oms-client': token,
+        },
+      );
+      MyPrint.printWarning(response.body);
+      Map data = jsonDecode(response.body);
+      if (data.containsKey("error")) {
+        return data['error']['message'];
+      } else {
+        return data['url'];
       }
     } catch (e) {
       MyPrint.printError(e.toString());
@@ -131,13 +155,13 @@ class MyLocalData {
   static int selectedChannelPage = 0;
 
   void initData() async {
-    MyNetowrk.userLogin = (await storage.read(key: "userLogin")) ?? "";
-    MyNetowrk.userPass = (await storage.read(key: "userPass")) ?? "";
+    MyNetwork.userLogin = (await storage.read(key: "userLogin")) ?? "";
+    MyNetwork.userPass = (await storage.read(key: "userPass")) ?? "";
   }
 
   Future<void> setData() async {
-    await storage.write(key: "userLogin", value: MyNetowrk.userLogin);
-    await storage.write(key: "userPass", value: MyNetowrk.userPass);
+    await storage.write(key: "userLogin", value: MyNetwork.userLogin);
+    await storage.write(key: "userPass", value: MyNetwork.userPass);
   }
 
   void deleteDatas() async {

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:odtv_final_ui/screens/Main_page.dart';
 import 'package:odtv_final_ui/screens/login_page.dart';
+import 'package:odtv_final_ui/screens/mainpages/channles_page.dart';
+import 'package:odtv_final_ui/screens/video_page.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -69,6 +71,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/main': (context) => MainPage(),
           '/login': (context) => LoginPage(),
+          '/video': (context) => VideoPage(),
         },
       ),
     );

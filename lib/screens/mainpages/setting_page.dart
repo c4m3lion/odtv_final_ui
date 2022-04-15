@@ -29,7 +29,7 @@ class _SettingPageState extends State<SettingPage> {
                   size: 30,
                 ),
                 title: const Text('User'),
-                subtitle: Text(MyNetowrk.userLogin),
+                subtitle: Text(MyNetwork.userLogin),
                 isThreeLine: true,
               ),
             ),

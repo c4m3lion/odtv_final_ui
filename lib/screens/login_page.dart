@@ -24,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
       isLoading = true;
     });
     String res =
-        await MyNetowrk().login(login: userText.text, pass: passText.text);
+        await MyNetwork().login(login: userText.text, pass: passText.text);
     if (res != "OK") {
       MyPrint.dialog(context, "Wrong credentials!",
           "Please enter right user informations!");
@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
     setState(() {
       statusLogin = "Getting Channels...";
     });
-    res = await MyNetowrk().getChannels();
+    res = await MyNetwork().getChannels();
     if (res == "OK") {
       Navigator.pushReplacementNamed(context, '/main');
     } else {
